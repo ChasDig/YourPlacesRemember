@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: clone code from dockerhub
-        uses: actions/cheskout@v2
+        uses: actions/checkout@v2
       - name: docker_build
         run: docker build -t chasdig/places_memories:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
