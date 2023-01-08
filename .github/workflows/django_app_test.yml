@@ -39,4 +39,4 @@ jobs:
 
     - name: Test start
       run: |
-        coverage run --source='.' ./manage.py test .
+        python manage.py test
