@@ -99,6 +99,9 @@ python3 manage.py runserver
 ```shell
 python3 manage.py createsuperuser
 ```
+### Ссылка на проект в DockerHub:
+https://hub.docker.com/r/chasdig/places_memories
+
 ## Тестирование проекта:
 - Для выполнения тестирования всего проекта:
 ```shell
