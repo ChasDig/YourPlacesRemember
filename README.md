@@ -41,6 +41,9 @@
 
 ## Подготовка проекта:
 
+### Ссылка на проект в DockerHub:
+https://hub.docker.com/r/chasdig/places_memories
+
 ### Запуск проекта используя docker-compose:
 - Создаем образ (<b>images</b>) docker с именем <b>place_memories_web</b> и запускаем контейнер
 в режиме daemon:
@@ -99,8 +102,6 @@ python3 manage.py runserver
 ```shell
 python3 manage.py createsuperuser
 ```
-### Ссылка на проект в DockerHub:
-https://hub.docker.com/r/chasdig/places_memories
 
 ## Тестирование проекта:
 - Для выполнения тестирования всего проекта:
