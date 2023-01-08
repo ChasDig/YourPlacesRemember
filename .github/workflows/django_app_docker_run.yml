@@ -8,11 +8,18 @@ on:
 
 jobs:
   build_and_push:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEBUG: ${{ secrets.DEBUG }}
+      SOCIAL_AUTH_VK_OAUTH2_KEY: ${{ secrets.SOCIAL_AUTH_VK_OAUTH2_KEY }}
+      SOCIAL_AUTH_VK_OAUTH2_SECRET: ${{ secrets.SOCIAL_AUTH_VK_OAUTH2_SECRET }}
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
 
     steps:
       - name: clone code from dockerhub
-        uses: actions/setup-python@v2
+        uses: actions/checkout@v2
       - name: docker_build
         run: docker build -t chasdig/places_memories:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
