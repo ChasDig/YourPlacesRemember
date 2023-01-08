@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: ${{ secrets.DEBUG }}
@@ -18,25 +16,20 @@ jobs:
         SOCIAL_AUTH_VK_OAUTH2_SECRET: ${{ secrets.SOCIAL_AUTH_VK_OAUTH2_SECRET }}
         SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: ${{ secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY }}
         SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: ${{ secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET }}
-
     strategy:
       max-parallel: 4
       matrix:
         python-version: [3.9]
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-
     - name: Install all dependencies and requirements
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
     - name: Test start
       run: |
         python manage.py test
