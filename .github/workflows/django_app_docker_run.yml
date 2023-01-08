@@ -1,0 +1,21 @@
+name: Build nad Deploy Django_app with docker
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_and_push:
+    runs_on: ubuntu-latest
+
+    steps:
+      - name: clone code from dockerhub
+        uses: actions/setup-python@v2
+      - name: docker_build
+        run: docker build -t chasdig/places_memories:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+      - name: docker login
+        run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: docker push
+        run: docker push chasdig/places_memories:$GITHUB_REF_NAME-$GITHUB_RUN_ID

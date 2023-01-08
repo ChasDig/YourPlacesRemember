@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- DataPlacesRemember -->
+{% block content %}
+
+    <script type="module" src="{% static '/memory_board/js/add_address.js' %}" id="address">{{ memory_detail.address }}</script>
+
+    <div class="container overflow-hidden" id="detail-memory">
+
+        <div class="row gy-5 row-cols-1 ">
+
+            <div class="col">
+
+                <div class="container" id="container_detail">
+                    <div class="post">
+                        <div class="post-image">
+                            <img src="{{ memory_detail.images.url }}">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <h2>{{ memory_detail.title }}</h2>
+                                <div class="post-meta">
+                                    <time datetime="2019-04-01">{{ memory_detail.data_published_memory }}</time>
+                                </div>
+
+                                <div id="map_add"></div>
+
+                            </div>
+                            <p id="detail_p">
+                                <b>Описание места:</b>
+                                {{ memory_detail.description }}
+                                <br><b>Впечатление о месте:</b>
+                                <br>{{ memory_detail.review }}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

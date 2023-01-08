@@ -1,0 +1,18 @@
+version: '3.10'
+
+services:
+  web:
+      build: .
+      image: chasdig/places_memories
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - .:/code
+      ports:
+        - "8000:8000"
+      environment:
+        SECRET_KEY: "${SECRET_KEY}"
+        DEBUG: "${DEBUG}"
+        SOCIAL_AUTH_VK_OAUTH2_KEY: "${SOCIAL_AUTH_VK_OAUTH2_KEY}"
+        SOCIAL_AUTH_VK_OAUTH2_SECRET: "${SOCIAL_AUTH_VK_OAUTH2_SECRET}"
+        SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: "${SOCIAL_AUTH_GOOGLE_OAUTH2_KEY}"
+        SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: "${SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET}"

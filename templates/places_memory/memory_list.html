@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- DataPlacesRemember -->
+{% block content %}
+
+    <!-- If  user authenticated and have memory-->
+    {% if request.user.is_authenticated %}
+
+        {% if memory_list %}
+            <main>
+                {% if memory_list_carousel %}
+                    <!-- Carousel memories-->
+                    <div class="container-fluid memory-carousel">
+                        <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
+
+                            <div class="carousel-inner">
+                                {% for memory in memory_list_carousel|slice:':1' %}
+                                    {% if memory.images %}
+                                        <div class="carousel-item active">
+                                            <img src="{{ memory.images.url }}" class="d-block w-100" alt="">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <p><a id="carousel_a" href="{{ memory.get_absolute_url }}">{{ memory.title }}</a></p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% for memory in memory_list_carousel|slice:'1:2' %}
+                                    {% if memory.images %}
+                                        <div class="carousel-item active">
+                                            <img src="{{ memory.images.url }}" class="d-block w-100" alt="">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <p><a id="carousel_a"  href="{{ memory.get_absolute_url }}">{{ memory.title }}</a></p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% for memory in memory_list_carousel|slice:'2:3' %}
+                                    {% if memory.images %}
+                                        <div class="carousel-item active">
+                                            <img src="{{ memory.images.url }}" class="d-block w-100" alt="">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <p><a id="carousel_a" href="{{ memory.get_absolute_url }}">{{ memory.title }}</a></p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+
+                        </div>
+                    </div>
+                {% endif %}
+            </main>
+
+            <!-- User memories-->
+
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                    {% for memory in memory_list %}
+
+                        <div class="col-md-6">
+
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                                <div class="col p-4 d-flex flex-column position-static">
+
+                                    <h5 class="mb-0">
+                                        {{ memory.title }}
+                                    </h5>
+
+                                    <div class="mb-1 text-muted">
+                                        {{ memory.data_published_memory }}
+                                    </div>
+
+                                    <p class="card-text mb-auto">{{ memory.description|truncatechars:175 }}</p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="submit" onclick="window.location.href = '{{ memory.get_absolute_url }}';" class="btn btn-outline-info">Подробнее</button>
+                                        </div>
+
+                                        <form method="post" action="{% url 'memory_delete' pk=memory.pk %}">
+                                            {% csrf_token %}
+                                            <button type="submit" formaction="{% url 'memory_delete' pk=memory.pk %}" class="btn btn-success">Удалить</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                {% if memory.images %}
+                                    <div class="col-auto d-none d-lg-block">
+                                        <img id="image_list" src="{{ memory.images.url }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+            {% if not memory_list %}
+                <!-- If  user authenticated and don't have memory-->
+                <div class="container">
+                    <h1 class="mt-5">К сожалению у Вас нет воспоминаний...</h1>
+                    <p class="lead">Но вы можете прямо сейчас оставить свое первое воспоминание:</p>
+                    <p><a id="firs_memory_a" href="{% url 'memory_create' %}">Оставить свое первое воспоминание</a></p>
+                </div>
+            {% endif %}
+        {% endif %}
+
+    {% else %}
+
+    <!-- If user not authenticated -->
+    <main class="px-8">
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img src="{% static 'memory_board/images/hello.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy" width="700" height="500">
+                </div>
+
+                    <div class="col-10 col-sm-8 col-lg-6">
+                    <h3 class="display-5 fw-bold lh-1 mb-3">Запечатли и сохрани свои воспоминания</h3>
+                    <p class="lead">
+                        Для доступа к своим воспоминаниям, пройдите авторизацию через учетную запись Вконтакте или Google:
+                    </p>
+
+                        <div id="social" class="container social">
+                            <a href="{% url 'social:begin' 'vk-oauth2' %}" class="btn">
+                                <i class="fab fa-vk">
+                                </i>
+                            </a>
+                            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn">
+                                <i class="fab fa-google">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+    </main>
+
+
+    {% endif %}
+
+{%  endblock content %}

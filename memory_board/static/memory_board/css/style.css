@@ -1,0 +1,292 @@
+/* URL */
+#carousel_a {
+    box-shadow: inset 0 0 0 0 #ffffff;
+    color: #fdfdfd;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    font-size: 1.5rem;
+}
+#carousel_a:hover {
+  box-shadow: inset 100px 0 0 0 #54b3d6;
+  color: white;
+}
+
+#firs_memory_a {
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    color: #050505;
+    margin: 0 -.25rem;
+    padding: 0 .25rem;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    font-size: 1.5rem;
+}
+#firs_memory_a:hover {
+  box-shadow: inset 100px 0 0 0 #54b3d6;
+  color: rgba(7, 87, 96, 0.97);
+}
+/* /URL */
+
+
+/* Image */
+
+#image_list {
+    max-width: 100%;
+    height: 350px;
+    width: 350px;
+    padding: 5px 5px 5px;
+}
+
+#leftimgage {
+    float:left;
+    margin: 7px 14px 14px 7px;
+   }
+/* /Image */
+
+
+/* Carousel */
+.memory-carousel {
+    padding: 0 10px 15px 10px;
+}
+
+.memory-carousel .carousel-item {
+    display: flex;
+    max-height: 600px;
+}
+
+.memory-carousel .carousel-item img {
+    object-fit: cover;
+}
+/* /Carousel */
+
+
+/* Avatar */
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+/* /Avatar */
+
+.button_create {
+
+    padding: 15px;
+    width: 1536px;
+    text-align: center;
+    display: block;
+
+}
+
+/* Social auth */
+.social {
+  position: relative;
+  top: 61%;
+  left: 28%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.social .btn {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  box-shadow: 0 5px 15px -5px #aaa;
+  margin: 10px;
+  border-radius: 30%;
+  overflow: hidden;
+  position: relative;
+  color: #42d2ff;
+}
+
+.social .btn i {
+  position: relative;
+  z-index: 4;
+  line-height: 45px;
+  font-size: 23px;
+  transition: 0.3s ease-in-out;
+}
+
+.social .btn::before {
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#00c6ff, #0072ff);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+
+.social .btn:hover i {
+  color: #fff;
+  transform: scale(1.3);
+}
+
+.social .btn:hover::before {
+  animation: onHover 0.7s 1;
+  left: -10%;
+  top: -10%;
+}
+
+@keyframes onHover {
+    0% {
+        left: -110%;
+        top: 90%;
+    }
+
+    50% {
+        left: 10%;
+        top: -30%;
+    }
+
+    100% {
+        top: -10%;
+        left: -10%;
+    }
+}
+/* /Social auth */
+
+
+/* Maps */
+#map_add {
+    width:556px;
+    height: 284px;
+	position: relative;
+	top: 33%;
+	left: 53%;
+	padding: 25px;
+	background: #fff;
+	border: 1px solid #ddd;
+	z-index: 100;
+
+	box-shadow: -1px -1px 24px 0 rgba(50, 50, 50, 0.5);
+}
+
+#map {
+    width:700px;
+    height: 575px;
+	position: relative;
+	top: 30%;
+	left: -20%;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #ddd;
+	z-index: 100;
+
+	box-shadow: -1px -1px 24px 0 rgba(50, 50, 50, 0.5);
+}
+/* /Maps */
+
+
+/* Detail Memory */
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #606060;
+    font-size: 14px;
+}
+
+
+#detail-memory {
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 0 15px;
+    background: white;
+}
+.post {
+    padding: 2em 0 1em;
+}
+
+.post h2 {
+    color: #222;
+    font-weight: 800;
+     margin-bottom: 30px;
+}
+.post-header {
+    text-align: center;
+}
+.post-meta {
+    margin-bottom: 30px;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    font-size: .8em;
+}
+.post-meta:before {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: #222;
+}
+time,
+.author {
+    padding-right: 26px;
+    position: relative;
+}
+time:after,
+.author:after {
+    color: #DDDDDF;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+#detail_p {
+    line-height: 1.5;
+    margin-bottom: 1em;
+    text-align: justify;
+    padding: 25px;
+}
+@media (min-width: 768px) {
+    #container_detail {
+        padding: 0 45px;
+    }
+    .post-image img {
+        float: left;
+        width: 640px;
+        margin: 0 30px 20px -45px;
+        border: 15px solid #DDDDDF;
+        border-left-width: 5px;
+    }
+}
+/* /Detail Memory */
+
+
+/* Form Create Memory */
+#id_title {
+
+    width: 768px;
+    height: 64px;
+
+
+}
+
+#id_address {
+
+    width: 768px;
+
+}
+
+#id_description {
+
+    width: 768px;
+    height: 200px;
+
+}
+
+#id_review {
+
+    width: 1536px;
+    height: 191px;
+
+}
+/* /Form Create Memory */
