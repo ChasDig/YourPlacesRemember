@@ -56,7 +56,7 @@ docker-compose down
 ```
 - Удаляем образ (<b>images</b>):
 ```shell
-docker rmi places_memories_web
+docker rmi chasdig/places_memories 
 ```
 
 ### Запуск проекта используя Dockerfile:
