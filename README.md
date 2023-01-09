@@ -106,7 +106,7 @@ python3 manage.py createsuperuser
 ## Тестирование проекта:
 - Для выполнения тестирования всего проекта:
 ```shell
-./manage.py pytest .
+./manage.py test .
 ```
 - - Также можно провести тестирование всего проекта, используя пакет <b>coverage<b>:
 ```shell
