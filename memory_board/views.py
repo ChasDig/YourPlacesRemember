@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from django.views.generic.edit import CreateView, FormView, DeleteView
@@ -67,9 +68,12 @@ class MemoryDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
 
-        context = super().get_context_data(**kwargs)
+        if self.object.user_id == self.request.user.id:
+            context = super().get_context_data(**kwargs)
 
-        return context
+            return context
+        else:
+            return self.handle_no_permission()
 
 
 class MemorySearchList(LoginRequiredMixin, ListView):
@@ -146,3 +150,18 @@ class MemoryDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "places_memory/memory_list.html"
 
     success_url = reverse_lazy("memory_list")
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Call the delete() method on the fetched object and then redirect to the
+        success URL.
+        """
+
+        self.object = self.get_object()
+
+        if self.request.user.id != self.object.user_id:
+            return self.handle_no_permission()
+
+        success_url = self.get_success_url()
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
